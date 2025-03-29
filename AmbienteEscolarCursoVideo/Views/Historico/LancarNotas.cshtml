@@ -1,0 +1,70 @@
+﻿@model List<HistoricoModel>
+
+
+<div id="message-box" class="alert" style="display:none;"></div>
+
+<div class="container mt-5">
+    <h2>Lançamento de Notas</h2>
+
+    <table class="table table-bordered" id="historicoTable">
+        <thead>
+            <tr>
+                <th>Matricula</th>
+                <th>Nome</th>
+                <th>Matéria</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+                <th>Nota 4</th>
+                <th>Média</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var historico in Model)
+            {
+                <tr data-id="@historico.Id">
+                    <td>
+                        <input type="text" class="form-control matricula" value="@historico.Aluno.Matricula" data-aluno-id="@historico.AlunoId" disabled />
+                    </td>
+                    <td><span class="nome-aluno">@historico.Aluno.Nome</span></td>
+                    <td><span class="nome-aluno">@historico.Materia.Descricao</span></td>
+                    <td contenteditable="true" class="editable" data-field="Nota1">@historico.Nota1</td>
+                    <td contenteditable="true" class="editable" data-field="Nota2">@historico.Nota2</td>
+                    <td contenteditable="true" class="editable" data-field="Nota3">@historico.Nota3</td>
+                    <td contenteditable="true" class="editable" data-field="Nota4">@historico.Nota4</td>
+                    <td><span class="media">@historico.Media</span></td>
+                    <td><button class="btn btn-danger btn-sm btn-delete">Remover</button></td>
+                </tr>
+            }
+
+
+            <tr id="novoHistorico">
+                <td><input type="text" class="form-control matricula matriculaAdd" /></td>
+                <td><span class="nome-aluno"></span></td>
+                <td>
+
+                    <select class="form-control select-materia" id="materiaSelect">
+                        @foreach (var materia in ViewBag.Materias)
+                        {
+                            <option value="@materia.Value">@materia.Text</option>
+                        }
+                    </select>
+                </td>
+                <td contenteditable="true" class="new-data"></td>
+                <td contenteditable="true" class="new-data"></td>
+                <td contenteditable="true" class="new-data"></td>
+                <td contenteditable="true" class="new-data"></td>
+                <td contenteditable="true" class="new-data" disabled></td>
+                <td>
+                    <button class="btn btn-success btn-sm btn-add">Adicionar</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/Historico/Historico.js"></script>

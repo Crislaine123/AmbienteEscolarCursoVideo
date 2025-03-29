@@ -1,0 +1,75 @@
+﻿@model List<HistoricoModel>
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/historico.css" asp-append-version="true" />
+    <title>Histórico do Aluno</title>
+
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Botão para Imprimir -->
+        <button id="btnPrint" class="btn btn-primary btn-print mb-5" onclick="window.print()">Imprimir Histórico</button>
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h3 class="text-center">Histórico de Aluno</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="text-center"><strong>Aluno:</strong> @Model[0].Aluno.Nome</h5>
+                        <h6><strong>Matrícula:</strong> @Model[0].Aluno.Matricula</h6>
+                        <h6><strong>Data de Nascimento:</strong> @Model[0].Aluno.DataNascimento</h6>
+                        <h6><strong>Email:</strong> @Model[0].Aluno.Email</h6>
+                        <h6><strong>Turma:</strong> @Model[0].Aluno.Turma.Descricao / @Model[0].Aluno.Turma.Modalidade / @Model[0].Aluno.Turma.Turno</h6>
+                        <hr>
+                        <h5>Notas por Matéria</h5>
+
+                        <!-- Tabela de Histórico -->
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Matéria</th>
+                                    <th scope="col">Nota 1</th>
+                                    <th scope="col">Nota 2</th>
+                                    <th scope="col">Nota 3</th>
+                                    <th scope="col">Nota 4</th>
+                                    <th scope="col">Média</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var materia in Model)
+                                {
+                                    <tr>
+                                        <td>@materia.Materia.Descricao</td>
+                                        <td>@materia.Nota1</td>
+                                        <td>@materia.Nota2</td>
+                                        <td>@materia.Nota3</td>
+                                        <td>@materia.Nota4</td>
+                                        <td>@materia.Media</td>
+                                    </tr>
+
+                                }
+
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

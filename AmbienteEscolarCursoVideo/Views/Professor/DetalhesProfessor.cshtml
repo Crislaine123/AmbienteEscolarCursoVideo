@@ -1,0 +1,54 @@
+﻿@model ProfessorModel
+
+
+<div class="container mt-4" >
+
+    <div class="d-flex justify-content-between align-items-center" >
+        <h2 class="mb-4 text-center" >Professor: @Model.Nome</h2>
+        <a asp-controller="Professor" asp-action="ListarProfessor" class="btn btn-primary">Voltar</a>
+    </div>
+
+    <div class="row" >
+        <div class="col-md-12">
+            <div class="accordion" id="turmasaccordion" >
+
+                @foreach (var turma in Model.Turmas)
+                {
+                    <div class="accordion-item" >
+                        <h2 class="accordion-header" id="heading-@turma.Id" >
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse-@turma.Id" aria-expanded="false" aria-controls="=collapse-@turma.Id"     >
+                                @turma.Descricao
+                            </button>
+                        </h2>
+                        <div id="collapse-@turma.Id" class="accordion-collapse collapse" aria-labelledby="heading-@turma.Id" 
+                        data-bs-parent="#turmasaccordion" >
+                            <div class="accordion-body">
+                                <ul>
+                                    @if(turma.Alunos.Count() > 0)
+                                    {
+                                        @foreach(var aluno in turma.Alunos)
+                                        {
+                                            <li class="list-group-item">@aluno.Nome</li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <li class="list-group-item">Nenhum aluno vinculado!</li>
+                                    }
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
