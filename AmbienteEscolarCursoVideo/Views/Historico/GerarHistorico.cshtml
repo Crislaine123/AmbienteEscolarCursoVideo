@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <h5 class="text-center"><strong>Aluno:</strong> @Model[0].Aluno.Nome</h5>
                         <h6><strong>Matrícula:</strong> @Model[0].Aluno.Matricula</h6>
-                        <h6><strong>Data de Nascimento:</strong> @Model[0].Aluno.DataNascimento</h6>
+                        <h6><strong>Data de Nascimento:</strong> @Model[0].Aluno.DataNascimento?.ToString("dd/MM/yyyy")</h6>
                         <h6><strong>Email:</strong> @Model[0].Aluno.Email</h6>
                         <h6><strong>Turma:</strong> @Model[0].Aluno.Turma.Descricao / @Model[0].Aluno.Turma.Modalidade / @Model[0].Aluno.Turma.Turno</h6>
                         <hr>

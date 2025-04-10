@@ -51,7 +51,7 @@ $(document).on("click", "#alunos", function () {
 
             if (response.dados.length == 0) {
                 tabelaAlunos += `<tr>
-                            <td colspan="4" class="text-center">nenhum aluno vinculado</td>                        
+                            <td colspan="4" class="text-center">Nenhum Aluno Vinculado</td>                        
                           </tr>`;
             } else {
                 response.dados.forEach(a => {

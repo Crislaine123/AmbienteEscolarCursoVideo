@@ -89,7 +89,7 @@ $(document).ready(function () {
 
 
     $(document).on("click", ".btn-add", function () {
-
+        debugger;
         var linha = $("#novoHistorico");
         var matricula = $(".matriculaAdd").val();
         var materiaId = $("#materiaSelect").val();
@@ -101,7 +101,13 @@ $(document).ready(function () {
             Nota4: linha.find("td:eq(6)").text()
             }
 
+        var temNotaInvalida = Object.values(notas).some(nota => nota == null || nota == "");   
 
+
+        if (temNotaInvalida || matricula == null || matricula == "" ) {
+            showMessage("danger", "Alguma informação não foi inserida!");
+            return;
+        }
 
         $.post("/Historico/SalvarNotas", { notas, matricula, materiaId }, function (response) {
 
