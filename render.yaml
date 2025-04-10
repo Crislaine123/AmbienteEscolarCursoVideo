@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: aspnet-mvc-app
+    env: dotnet
+    plan: free
+    buildCommand: dotnet build
+    startCommand: dotnet AmbienteEscolarCursoVideo.dll
+    branch: master
+    repo: https://github.com/Crislaine123/AmbienteEscolarCursoVideo
